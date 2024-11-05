@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleMenu.Controllers.MenuItems
+namespace ConsoleMenu.Controllers.Customers
 {
     public class ShowCustomerController
     {
