@@ -41,7 +41,7 @@ namespace ConsoleMenu.Menu
                     case "2":
                         Console.WriteLine("Valg 2");
                         ShowCustomerController showCustomerController = new ShowCustomerController(_customerRepository);
-                        _customerRepository.PrintAllCustomers();
+                        showCustomerController.ShowAllCustomers();
                         Console.ReadLine();
                         break;
                     case "3":

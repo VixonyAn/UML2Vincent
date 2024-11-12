@@ -16,7 +16,7 @@ namespace ConsoleMenu.Controllers.Customers
             _customerRepo = customerRepository;
         }
 
-        public void ShowAllMenuItems()
+        public void ShowAllCustomers()
         {
             _customerRepo.PrintAllCustomers();
         }

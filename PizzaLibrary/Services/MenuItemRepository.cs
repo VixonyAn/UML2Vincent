@@ -33,27 +33,7 @@ namespace PizzaLibrary.Services
         #region Methods
         public void AddMenuItem(MenuItem menuItem)
         { // Add method approved
-            //_menuItemList.Add(menuItem);
-
-            // create new item, check if new items ID is the same as an existing ID, throw error
-
-            for (int i = 0; i < _menuItemList.Count; i++)
-            {
-                throw new MenuItemNumberExist();
-            }
-
-
-            //foreach (MenuItem mi in _menuItemList)
-            //{
-            //    if (_menuItemList[]) //look for a Null space in the list
-            //    {
-            //        AddMenuItem(mi);
-            //    }
-            //    else
-            //    {
-            //        throw new MenuItemNumberExist();
-            //    }
-            //}
+            _menuItemList.Add(menuItem);
         }
 
         public List<MenuItem> GetAll()
@@ -105,17 +85,29 @@ namespace PizzaLibrary.Services
             return minPriced;
         }
 
+        // According to GRASP this file is the Expert,
+        // which should handle finding the most expensive pizza
         public MenuItem MostExpensivePizza()
         {
-            MenuItem mostExpensive = _menuItemList[0];
-            foreach (MenuItem menuItem in _menuItemList)
+            if (_menuItemList.Count == 0)
             {
-                if (menuItem.Price > mostExpensive.Price)
-                {
-                    mostExpensive = menuItem;
-                }
+                return null;
             }
-            return mostExpensive;
+            else
+            {
+                MenuItem mostExpensivePizza = new MenuItem();
+                mostExpensivePizza.Price = 0;
+                foreach (MenuItem menuItem in _menuItemList)
+                {
+                    if (menuItem.TheMenuType == MenuType.PIZZECLASSSICHE
+                        || menuItem.TheMenuType == MenuType.PIZZESPECIALI 
+                        && menuItem.Price > mostExpensivePizza.Price)
+                    {
+                        mostExpensivePizza = menuItem;
+                    }
+                }
+                return mostExpensivePizza;
+            }
         }
     }
 }
