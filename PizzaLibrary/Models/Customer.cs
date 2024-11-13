@@ -21,17 +21,19 @@ namespace PizzaLibrary.Models
         public int Id { get { return _id; } }
         public string Mobile { get; set; }
         public string Name { get; set; }
+        public string City { get; set; }
         #endregion
 
         #region Constructor
-        public Customer(string name, string mobile, string address)
+        public Customer(string name, string mobile, string city, string address)
         {
             _counter++;
             _id = _counter;
             Name = name;
             Mobile = mobile;
+            City = city;
             Address = address;
-            ClubMember = false;
+            ClubMember = true;
         }
         #endregion
 
@@ -41,6 +43,7 @@ namespace PizzaLibrary.Models
             return $"ID: {Id}\n" +
                    $"Navn: {Name}\n" +
                    $"Mobil: {Mobile}\n" +
+                   $"By: {City}\n" +
                    $"Adresse: {Address}\n" +
                    $"Medlem Status: {ClubMember}\n";
         }

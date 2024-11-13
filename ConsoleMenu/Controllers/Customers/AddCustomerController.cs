@@ -13,9 +13,9 @@ namespace ConsoleMenu.Controllers.Customers
         ICustomerRepository _customerRepository;
         public Customer Customer { get; set; }
 
-        public AddCustomerController(string name, string mobile, string address, bool clubMember, ICustomerRepository customerRepository)
+        public AddCustomerController(string name, string mobile, string city, string address, bool clubMember, ICustomerRepository customerRepository)
         {
-            Customer = new Customer(name, mobile, address);
+            Customer = new Customer(name, mobile, city, address);
             Customer.ClubMember = clubMember;
             _customerRepository = customerRepository;
         }

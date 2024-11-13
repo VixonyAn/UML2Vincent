@@ -13,10 +13,10 @@ namespace PizzaLibrary.Data
         private static Dictionary<string, Customer> _customerData =
             new Dictionary<string, Customer>()
             {
-            { "12121212", new Customer("Mikkel", "12121212", "Street 123") },
-            { "13131313", new Customer("Charlotte", "13131313", "Avenue 321") },
-            { "14141414", new Customer("Carina", "14141414", "High Street 234") },
-            { "15151515", new Customer("Muhammed", "15151515", "North Street 345") }
+            { "12121212", new Customer("Mikkel", "12121212", "Roskilde", "Street 123") },
+            { "13131313", new Customer("Charlotte", "13131313", "Roskilde", "Avenue 321") },
+            { "14141414", new Customer("Carina", "14141414", "Roskilde", "High Street 234") },
+            { "15151515", new Customer("Muhammed", "15151515", "Ringsted", "North Street 345") }
             };
 
         private static List<MenuItem> _menuItemData =
@@ -50,10 +50,10 @@ namespace PizzaLibrary.Data
         {
             _customerData = new Dictionary<string, Customer>()
             {
-            { "12121212", new Customer("Mikkel", "12121212", "Street 123") },
-            { "13131313", new Customer("Charlotte", "13131313", "Avenue 321") },
-            { "14141414", new Customer("Carina", "14141414", "High Street 234") },
-            { "15151515", new Customer("Muhammed", "15151515", "North Street 345") }
+            { "12121212", new Customer("Mikkel", "12121212", "Roskilde", "Street 123") },
+            { "13131313", new Customer("Charlotte", "13131313", "Roskilde", "Avenue 321") },
+            { "14141414", new Customer("Carina", "14141414", "Roskilde", "High Street 234") },
+            { "15151515", new Customer("Muhammed", "15151515", "Ringsted", "North Street 345") }
             };
 
             _menuItemData =

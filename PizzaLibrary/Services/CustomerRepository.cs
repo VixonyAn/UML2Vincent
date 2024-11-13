@@ -5,9 +5,12 @@ using PizzaLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PizzaLibrary.Services
 {
@@ -94,15 +97,30 @@ namespace PizzaLibrary.Services
             return members;
         }
 
-        public override string ToString() // not needed right now
-        { // is this neccesary? what should it do? PrintAll? - ASK
-            //TODO one value at a time
-            //return $"{customer.}";
+        public List<Customer> FindRoskildeCustomers()
+        {
+            List<Customer> roskildeCustomers = new List<Customer>();
             foreach (Customer customer in _customers.Values)
             {
-                return customer.ToString();
+                if (customer.City == "Roskilde")
+                {
+                    roskildeCustomers.Add(customer);
+                }
             }
-            return "";
+            return roskildeCustomers;
+        }
+
+        public override string ToString()
+        {
+            foreach (Customer customer in _customers.Values)
+            {
+                return $"ID: {customer.Id}\n" +
+                       $"Navn: {customer.Name}\n" +
+                       $"Mobil: {customer.Mobile}\n" +
+                       $"Adresse: {customer.Address}\n" +
+                       $"Medlem Status: {customer.ClubMember}\n"; 
+            }
+            return null;
         }
         #endregion
     }

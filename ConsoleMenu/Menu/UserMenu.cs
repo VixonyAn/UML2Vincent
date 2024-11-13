@@ -50,12 +50,14 @@ namespace ConsoleMenu.Menu
                         string name = Console.ReadLine();
                         Console.WriteLine("Indlæs mobil nr:");
                         string mobile = Console.ReadLine();
+                        Console.WriteLine("Indlæs by:");
+                        string city = Console.ReadLine();
                         Console.WriteLine("Indlæs adresse:");
                         string address = Console.ReadLine();
                         Console.WriteLine("Vil du være clubmember y/n");
                         string clubMemberString = Console.ReadLine().ToLower();
                         bool isClubMember = (clubMemberString[0] == 'y') ? true : false;
-                        AddCustomerController addMenuItemController = new AddCustomerController(name, mobile, address, isClubMember, _customerRepository);
+                        AddCustomerController addMenuItemController = new AddCustomerController(name, mobile, city, address, isClubMember, _customerRepository);
                         addMenuItemController.AddCustomer();
                         break;
                     case "4":

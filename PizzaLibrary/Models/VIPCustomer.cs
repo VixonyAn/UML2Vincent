@@ -11,7 +11,7 @@ namespace PizzaLibrary.Models
     {
         public int Discount { get; set; }
         
-        public VIPCustomer(string name, string mobile, string address, int discount) : base(name, mobile, address)
+        public VIPCustomer(string name, string mobile, string city, string address, int discount) : base(name, mobile, city, address)
         {
                 Discount = discount;
         }
@@ -20,6 +20,7 @@ namespace PizzaLibrary.Models
             return $"ID: {Id}\n" +
                    $"Navn: {Name}\n" +
                    $"Mobil: {Mobile}\n" +
+                   $"By: {City}\n" +
                    $"Adresse: {Address}\n" +
                    $"VIP Status: True\n" +
                    $"Rabat: {Discount}%\n";

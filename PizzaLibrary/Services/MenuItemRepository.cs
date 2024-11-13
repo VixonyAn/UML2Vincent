@@ -70,7 +70,6 @@ namespace PizzaLibrary.Services
             MenuItem foundItem = GetMenuItemByNo(no);
             _menuItemList.Remove(foundItem);
         }
-        #endregion
 
         public List<MenuItem> MinPriceList() // just a filterer, not a printer!!
         { // Approved -  list all items over 50 dkk
@@ -84,12 +83,11 @@ namespace PizzaLibrary.Services
             }
             return minPriced;
         }
-
-        // According to GRASP this file is the Expert,
-        // which should handle finding the most expensive pizza
+        
         public MenuItem MostExpensivePizza()
-        {
-            if (_menuItemList.Count == 0)
+        { // According to GRASP this file is the Expert,
+          // which should handle finding the most expensive pizza
+            if (_menuItemList == null || _menuItemList.Count == 0)
             {
                 return null;
             }
@@ -109,5 +107,18 @@ namespace PizzaLibrary.Services
                 return mostExpensivePizza;
             }
         }
+
+        //public MenuItem PrintAllMenuItemType(MenuType type)
+        //{
+        //    if (type != MenuType.SANDWICHES || MenuType.BRUCHETTA_CROSTINO || MenuType.SALATER || MenuType.PIZZECLASSSICHE || MenuType.PIZZESPECIALI || MenuType.PASTAALFORNO || MenuType.TILBEHØR)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+        #endregion
     }
 }
