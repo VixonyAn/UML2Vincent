@@ -10,8 +10,4 @@
     <ProjectReference Include="..\PizzaLibrary\PizzaLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\MenuItem\" />
-  </ItemGroup>
-
 </Project>

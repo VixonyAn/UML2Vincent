@@ -1,0 +1,41 @@
+﻿@page
+@using PizzaLibrary.Interfaces;
+@using PizzaLibrary.Models;
+@using PizzaLibrary.Services;
+@model UMLRazor.Pages.MenuItems.ShowMenuItemsModel
+@{
+    ViewData["Title"] = "ShowMenuItems";
+}
+
+<h1>Number of Menu Items @Model.MenuItems.Count</h1>
+
+<p>
+    <a asp-page="AddMenuItem">Add New Menu Item</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>TheMenuType</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MenuItem item in Model.MenuItems)
+        {
+            <tr>
+                <td>@item.No</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Description</td>
+                <td>@item.TheMenuType</td>
+                <td><a asp-page="AddMenuItem" asp-route-name="@item.Name">Add</a></td>
+                <td><a asp-page="EditMenuItem" asp-route-name="@item.Name">Edit</a></td>
+                <td><a asp-page="DeleteMenuItem" asp-route-deleteNo="@item.No">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

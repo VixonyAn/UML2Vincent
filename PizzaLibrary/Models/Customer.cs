@@ -24,7 +24,12 @@ namespace PizzaLibrary.Models
         public string City { get; set; }
         #endregion
 
-        #region Constructor
+        #region Constructors
+        public Customer()
+        {
+            _counter++;
+            _id = _counter;
+        }
         public Customer(string name, string mobile, string city, string address)
         {
             _counter++;

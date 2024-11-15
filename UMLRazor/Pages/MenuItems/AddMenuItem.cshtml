@@ -1,0 +1,28 @@
+﻿@page
+@model UMLRazor.Pages.MenuItems.AddMenuItemModel
+@{
+    ViewData["Title"] = "Add Menu Item";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Name" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Price" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Description" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.TheMenuType" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.TheMenuType" class="form-control" />
+    </div>
+    <div class="formgroup">
+        <label asp-for="@Model.MenuItem.Name" class="control-label"></label>
+        <input type="submit" value="Create Menu Item" class="btn btn-primary" />
+    </div>
+</form>

@@ -41,7 +41,7 @@ namespace PizzaLibrary.Services
             }
             else
             {
-                throw new CustomerMoblieNumberExist();
+                throw new CustomerMobileNumberExist();
             }
         }
 
@@ -71,6 +71,18 @@ namespace PizzaLibrary.Services
             return null;
         }
 
+        //public Customer? GetCustomerById(int id)
+        //{ // Approved
+        //    foreach (Customer customer in _customers.Values)
+        //    {
+        //        if (id == customer.Id)
+        //        {
+        //            return customer;
+        //        }
+        //    }
+        //    return null;
+        //}
+
         public void PrintAllCustomers()
         { // Approved
             foreach (Customer customer in _customers.Values)
@@ -82,6 +94,21 @@ namespace PizzaLibrary.Services
         public void RemoveCustomer(string mobile)
         { // Approved
             _customers.Remove(mobile);
+        }
+
+        public void EditCustomer(Customer customer)
+        {
+            if (_customers.ContainsKey(customer.Mobile))
+            {
+                customer.Name = customer.Name;
+                customer.Mobile = customer.Mobile;
+                customer.City = customer.City;
+                customer.Address = customer.Address;
+            }
+            else
+            {
+                throw new Exception("Mobile doesn't exist");
+            }
         }
 
         public List<Customer> GetAllMembers() // just a filterer, not a printer!!

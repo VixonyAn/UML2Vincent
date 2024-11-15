@@ -14,7 +14,9 @@ namespace PizzaLibrary.Interfaces
         List<Customer> GetAll();
         void AddCustomer(Customer customer);
         Customer GetCustomerByMobile(string mobile);
+        //Customer GetCustomerById(int id);
         void RemoveCustomer(string mobile);
+        void EditCustomer(Customer customer);
         void PrintAllCustomers();
 
     }

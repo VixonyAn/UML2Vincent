@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace PizzaLibrary.Exceptions
 {
-    public class CustomerMoblieNumberExist : Exception
+    public class CustomerMobileNumberExist : Exception
     {
         //Hvis der tilføjes en  Customer til CustomerRepository,
         //som har et nummer, som allerede eksisterer skal der
         //kastes en exception af typen CustomerMoblieNumberExist.
-        public CustomerMoblieNumberExist()
+        public CustomerMobileNumberExist()
         {
         }
 
-        public CustomerMoblieNumberExist(string message)
+        public CustomerMobileNumberExist(string message)
             : base(message)
         {
         }
