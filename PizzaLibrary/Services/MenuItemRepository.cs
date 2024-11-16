@@ -97,7 +97,7 @@ namespace PizzaLibrary.Services
                 mostExpensivePizza.Price = 0;
                 foreach (MenuItem menuItem in _menuItemList)
                 {
-                    if (menuItem.TheMenuType == MenuType.PIZZECLASSSICHE
+                    if (menuItem.TheMenuType == MenuType.PIZZECLASSICHE
                         || menuItem.TheMenuType == MenuType.PIZZESPECIALI 
                         && menuItem.Price > mostExpensivePizza.Price)
                     {

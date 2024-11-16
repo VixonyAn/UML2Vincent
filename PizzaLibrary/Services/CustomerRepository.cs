@@ -101,9 +101,9 @@ namespace PizzaLibrary.Services
             if (_customers.ContainsKey(customer.Mobile))
             {
                 customer.Name = customer.Name;
-                customer.Mobile = customer.Mobile;
-                customer.City = customer.City;
                 customer.Address = customer.Address;
+                customer.Mobile = customer.Mobile;
+                //customer.City = customer.City;
             }
             else
             {
