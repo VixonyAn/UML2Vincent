@@ -3,29 +3,32 @@
 @{
     ViewData["Title"] = "Edit Customer";
 }
-
-<form method="post">
-    <div class="form-group">
-        <label asp-for="@Model.Customer.Id" class="control-label"></label>
-        <input asp-for="@Model.Customer.Id" class="form-control" />
+<h1>Edit Customer</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="control-label"></label>
+                <input asp-for="@Model.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Address" class="control-label"></label>
+                <input asp-for="@Model.Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.newMobile" class="control-label"></label>
+                <input asp-for="@Model.newMobile" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ClubMember" class="control-label"></label>
+                <input type="checkbox" name="ChooseClub" value="true"></input>
+            </div>
+            <div class="formgroup">
+                <input type="submit" value="Edit Customer" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="@Model.Customer.Name" class="control-label"></label>
-        <input asp-for="@Model.Customer.Name" class="form-control" />
+    <div>
+        <a asp-page="ShowCustomers">Back to List</a>
     </div>
-    <div class="form-group">
-        <label asp-for="@Model.Customer.Address" class="control-label"></label>
-        <input asp-for="@Model.Customer.Address" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Customer.Mobile" class="control-label"></label>
-        <input asp-for="@Model.Customer.Mobile" class="form-control" />
-    </div>
-    <div class="formgroup">
-        <input type="submit" value="Edit Customer" class="btn btn-primary" />
-    </div>
-    @* <div class="form-group">
-        <label asp-for="@Model.Customer.ClubMember" class="control-label"></label>
-        <input value="@(Model.Customer.ClubMember?"Er medlem":"Ikke medlem")" class="form-control"></input>
-    </div> *@
-</form>
+</div>

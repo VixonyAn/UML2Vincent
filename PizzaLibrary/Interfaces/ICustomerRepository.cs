@@ -3,8 +3,11 @@ using PizzaLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PizzaLibrary.Interfaces
 {
@@ -16,9 +19,8 @@ namespace PizzaLibrary.Interfaces
         Customer GetCustomerByMobile(string mobile);
         //Customer GetCustomerById(int id);
         void RemoveCustomer(string mobile);
-        void EditCustomer(Customer customer);
+        void EditCustomer(string name, string address, string mobile, string newMobile, bool chooseClub);
         void PrintAllCustomers();
-
     }
 
 }

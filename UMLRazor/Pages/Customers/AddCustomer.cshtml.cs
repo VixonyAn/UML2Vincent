@@ -8,6 +8,11 @@ namespace UMLRazor.Pages.Customers
     public class AddCustomerModel : PageModel
     {
         private ICustomerRepository _repo;
+
+        //private IWebHostEnvironment;
+        //[BindProperty]
+        //public IFormFile Photo { get; set; }
+        
         public AddCustomerModel(ICustomerRepository customerRepository) // dependency injection
         {
             _repo = customerRepository; // parameter overført

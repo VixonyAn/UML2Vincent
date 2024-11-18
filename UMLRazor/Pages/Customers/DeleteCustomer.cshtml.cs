@@ -17,9 +17,10 @@ namespace UMLRazor.Pages.Customers
             this._repo = customerRepository;
         }
 
-        public void OnGet(string deleteMobile)
+        public IActionResult OnGet(string deleteMobile)
         {
             Customer = _repo.GetCustomerByMobile(deleteMobile);
+            return Page();
         }
         //public void OnGet(int deleteId)
         //{

@@ -18,17 +18,18 @@ namespace PizzaLibrary.Models
         #region Properties
         public string Address { get; set; }
         public bool ClubMember { get; set; }
-        public int Id { get { return _id; } }
+        public int Id { get { return _id; } set { _id = value; } }
         public string Mobile { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
+        public string CustomerImage { get; set; }
         #endregion
 
         #region Constructors
         public Customer()
         {
-            _counter++;
-            _id = _counter;
+            //_counter++;
+            //_id = _counter;
         }
         public Customer(string name, string mobile, string city, string address)
         {

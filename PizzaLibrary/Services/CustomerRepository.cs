@@ -18,6 +18,7 @@ namespace PizzaLibrary.Services
     {
         #region Instance Fields
         private Dictionary<string, Customer> _customers; // string is mobile number as key
+        private List<int> _idInUse;
         #endregion
 
         #region Properties
@@ -33,16 +34,44 @@ namespace PizzaLibrary.Services
         #endregion
 
         #region Methods
-        public void AddCustomer(Customer customer)
-        { // Approved
-            if (!_customers.ContainsKey(customer.Mobile))
-            { // because dictionaries cannot contain duplicates
-                _customers.Add(customer.Mobile, customer);
-            }
-            else
+        //public void AddCustomer(Customer customer)
+        //{ // Approved
+        //    if (!_customers.ContainsKey(customer.Mobile))
+        //    { // because dictionaries cannot contain duplicates
+        //        Customer._counter++;
+        //        customer.Id = Customer._counter;
+        //        _customers.Add(customer.Mobile, customer);
+        //    }
+        //    else
+        //    {
+        //        throw new CustomerMobileNumberExist();
+        //    }
+        //}
+
+        public void AddCustomer(Customer customer) // From Kristian
+        {
+            List<int> _IdsInUse = new List<int>();
+
+            foreach (Customer c in _customers.Values)
             {
-                throw new CustomerMobileNumberExist();
+                _IdsInUse.Add(c.Id);
             }
+
+            _IdsInUse.Sort();
+
+            for (int i = 0; i < _IdsInUse.Count; i++)
+            {
+                if (i + 1 != _IdsInUse[i])
+                {
+                    customer.Id = i + 1;
+                    break;
+                }
+            }
+            if (customer.Id == 0) customer.Id = _IdsInUse.Count + 1;
+
+            if (_customers.ContainsKey(customer.Mobile)) throw new CustomerMobileNumberExist();
+            _customers[customer.Mobile] = customer;
+
         }
 
         public List<Customer> GetAll()
@@ -61,12 +90,18 @@ namespace PizzaLibrary.Services
 
         public Customer? GetCustomerByMobile(string mobile)
         { // Approved
-            foreach (Customer customer in _customers.Values)
+            //foreach (Customer customer in _customers.Values)
+            //{
+            //    if (mobile == customer.Mobile)
+            //    {
+            //        return customer;
+            //    }
+            //}
+            //return null;
+
+            if (mobile != null && _customers.ContainsKey(mobile))
             {
-                if (mobile == customer.Mobile)
-                {
-                    return customer;
-                }
+                return _customers[mobile];
             }
             return null;
         }
@@ -96,18 +131,20 @@ namespace PizzaLibrary.Services
             _customers.Remove(mobile);
         }
 
-        public void EditCustomer(Customer customer)
+        public void EditCustomer(string name, string address, string mobile, string newMobile, bool clubMember)
         {
-            if (_customers.ContainsKey(customer.Mobile))
+            if (_customers.ContainsKey(newMobile) && newMobile != mobile) throw new CustomerMobileNumberExist();
+
+            Customer tempRef = _customers[mobile]; // customer becomes tempRef and values are overridden
+            tempRef.Name = name;
+            tempRef.Address = address;
+            tempRef.ClubMember = clubMember;
+
+            if (tempRef.Mobile != newMobile) // if they try to update their mobile
             {
-                customer.Name = customer.Name;
-                customer.Address = customer.Address;
-                customer.Mobile = customer.Mobile;
-                //customer.City = customer.City;
-            }
-            else
-            {
-                throw new Exception("Mobile doesn't exist");
+                tempRef.Mobile = newMobile;
+                _customers.Remove(mobile);
+                _customers[newMobile] = tempRef;
             }
         }
 
@@ -122,6 +159,7 @@ namespace PizzaLibrary.Services
                 }
             }
             return members;
+            //return _customers.Values.ToList();
         }
 
         public List<Customer> FindRoskildeCustomers()

@@ -12,19 +12,26 @@ namespace UMLRazor.Pages.Customers
         [BindProperty] // Two way binding
         public Customer Customer { get; set; }
 
+        [BindProperty] public string Name { get; set; }
+        [BindProperty] public string Address { get; set; }
+        [BindProperty] public string Mobile { get; set; }
+        [BindProperty] public string newMobile { get; set; }
+        [BindProperty] public bool ClubMember { get; set; }
+
         public EditCustomerModel(ICustomerRepository customerRepository) // dependency injection
         {
-            _repo = customerRepository; // parameter overført
+            this._repo = customerRepository; // parameter overført
         }
 
-        public void OnGet(string editMobile)
+        public IActionResult OnGet(string editMobile)
         {
             Customer = _repo.GetCustomerByMobile(editMobile);
+            return Page();
         }
 
-        public IActionResult OnPost(Customer customer)
+        public IActionResult OnPost(string mobile, bool chooseClub)
         {
-            _repo.EditCustomer(customer);
+            _repo.EditCustomer(Name, Address, Mobile, newMobile, chooseClub);
             return RedirectToPage("ShowCustomers");
         }
     }

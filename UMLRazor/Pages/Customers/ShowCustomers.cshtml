@@ -18,6 +18,7 @@
             <th>Name</th>
             <th>Address</th>
             <th>Mobile</th>
+            <th>ClubMember</th>
         </tr>
     </thead>
     <tbody>
@@ -28,8 +29,8 @@
                 <td>@item.Name</td>
                 <td>@item.Address</td>
                 <td>@item.Mobile</td>
-                <td><a asp-page="AddCustomer" asp-route-id="@item.Id">Add</a></td>
-                <td><a asp-page="EditCustomer" asp-route-id="@item.Id">Edit</a></td>
+                <td>@item.ClubMember</td>
+                <td><a asp-page="EditCustomer" asp-route-mobile="@item.Mobile">Edit</a></td>
                 <td><a asp-page="DeleteCustomer" asp-route-deleteMobile="@item.Mobile">Delete</a></td>
                 @* <td><a asp-page="DeleteCustomer" asp-route-deleteId="@item.Id">Delete</a></td> *@
             </tr>
