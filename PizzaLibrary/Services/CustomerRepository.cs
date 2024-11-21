@@ -71,7 +71,6 @@ namespace PizzaLibrary.Services
 
             if (_customers.ContainsKey(customer.Mobile)) throw new CustomerMobileNumberExist();
             _customers[customer.Mobile] = customer;
-
         }
 
         public List<Customer> GetAll()
@@ -131,7 +130,7 @@ namespace PizzaLibrary.Services
             _customers.Remove(mobile);
         }
 
-        public void EditCustomer(string name, string address, string mobile, string newMobile, bool clubMember)
+        public void EditCustomer(string name, string address, string mobile, string newMobile, bool clubMember) // From Kristian
         {
             if (_customers.ContainsKey(newMobile) && newMobile != mobile) throw new CustomerMobileNumberExist();
 

@@ -5,8 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(); // Add singleton
-builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>(); // Add singleton
+builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(); // Add singleton, dependency injection
+builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>(); // Add singleton, dependency injection
+
 
 var app = builder.Build();
 
