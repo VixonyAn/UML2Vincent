@@ -18,8 +18,10 @@
         <input asp-for="@Model.MenuItem.Description" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.MenuItem.TheMenuType" class="control-label"></label>
-        <input asp-for="@Model.MenuItem.TheMenuType" class="form-control" />
+        <label>Select Menu Type </label>
+        <select id="ChosenMenuType" name="ChosenMenuType"
+                asp-for="@Model.ChosenMenuType" asp-items="@Model.MenuTypeSelectList">
+        </select>
     </div>
     <div class="formgroup">
         <label asp-for="@Model.MenuItem.Name" class="control-label"></label>

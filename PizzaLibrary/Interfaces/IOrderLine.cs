@@ -13,8 +13,7 @@ namespace PizzaLibrary.Interfaces
         string Comment { get; set; }
         int Id { get; set; }
         MenuItem MenuItem { get; set; }
-
-        //void AddExtraAccessory(Accessory accessory);
+        void AddExtraAccessory(Accessory accessory);
         double SubTotal();
         string ToString();
     }

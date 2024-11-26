@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(); // Add singleton, dependency injection
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>(); // Add singleton, dependency injection
-
+builder.Services.AddSingleton<IShoppingBasket, ShoppingBasket>(); // should be AddTransient later
 
 var app = builder.Build();
 

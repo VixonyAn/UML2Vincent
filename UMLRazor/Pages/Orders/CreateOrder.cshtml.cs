@@ -10,6 +10,7 @@ namespace UMLRazor.Pages.Orders
     {
         private ICustomerRepository _cRepo;
         private IMenuItemRepository _mRepo;
+        private IShoppingBasket _shoppingBasket;
 
         #region Properties
         [BindProperty]
@@ -22,12 +23,16 @@ namespace UMLRazor.Pages.Orders
         public int Amount { get; set; }
         [BindProperty]
         public string Comment { get; set; }
+        public List<OrderLine> OrderLines { get; set; }
         #endregion
 
-        public CreateOrderModel(ICustomerRepository customerRepository, IMenuItemRepository menuItemRepository)
+        public CreateOrderModel(ICustomerRepository customerRepository,
+                                IMenuItemRepository menuItemRepository,
+                                IShoppingBasket shoppingBasket)
         {
             _cRepo = customerRepository;
             _mRepo = menuItemRepository;
+            _shoppingBasket = shoppingBasket;
             createMenuSelectList();
         }
 
@@ -48,6 +53,7 @@ namespace UMLRazor.Pages.Orders
         public void OnPostCustomer()
         {
             TheCustomer = _cRepo.GetCustomerByMobile(SearchCustomerMobile);
+            _shoppingBasket.Customer = TheCustomer;
             if (TheCustomer == null)
             {
                 //Error Message
@@ -55,7 +61,17 @@ namespace UMLRazor.Pages.Orders
         }
         public void OnPostAddToOrder()
         {
-
+            if (Amount > 0)
+            {
+                MenuItem menuItemToOrder = _mRepo.GetMenuItemByNo(ChosenMenuItem);
+                if (menuItemToOrder != null)
+                {
+                    OrderLine ol = new OrderLine(Amount, menuItemToOrder, Comment);
+                    _shoppingBasket.AddOrderLine(ol);
+                }
+                OrderLines = _shoppingBasket.GetAll();
+                TheCustomer = _shoppingBasket.Customer;
+            }
         }
     }
 }

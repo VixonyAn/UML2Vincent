@@ -12,15 +12,17 @@ namespace PizzaLibrary.Models
     public class OrderLine : IOrderLine
     { // These are the individual lines of items a person has ordered
         #region Instance Fields
+        private int _id;
         private MenuItem _menuItem;
         public static int _counter = 0;
+        private List<Accessory> _accessories;
         #endregion
 
         #region Properties
-        public MenuItem MenuItem { get; set; }
+        public MenuItem MenuItem { get { return _menuItem; } set { _menuItem = value; } }
         public int Amount { get; set; }
         public string Comment { get; set; }
-        public int Id { get; set; }
+        public int Id { get { return _id; } set { _id = value; } }
         #endregion
 
         #region Constructors
@@ -38,7 +40,10 @@ namespace PizzaLibrary.Models
         #endregion
 
         #region Methods
-        //void AddExtraAccessory(Accessory accessory);
+        public void AddExtraAccessory(Accessory accessory)
+        {
+            
+        }
         public double SubTotal()
         {
             return MenuItem.Price * Amount;

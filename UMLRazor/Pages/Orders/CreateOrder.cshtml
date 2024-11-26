@@ -13,10 +13,17 @@
 @{
     if (@Model.TheCustomer != null)
     {
-        <h3>@Model.TheCustomer.Name</h3>
-        <h3>@Model.TheCustomer.Mobile</h3>
+        <p>
+        Navn: @Model.TheCustomer.Name
+        <br />
+        Adresse: @Model.TheCustomer.Address
+        <br />
+        Mobil: @Model.TheCustomer.Mobile
+        </p>
+        
     }
 }
+
 <h1>Add MenuItem to Order</h1>
 <form method="post" asp-page-handler="AddToOrder">
     <label>MenuItems</label>
@@ -29,3 +36,30 @@
     </textarea>
     <input type="submit" value="AddToOrder" />
 </form>
+
+@{
+    if (Model.OrderLines != null && Model.OrderLines.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderLines)
+                {
+                    <tr>
+                        <td>@item.MenuItem.Name</td>
+                        <td>@item.Amount</td>
+                        <td>@item.SubTotal()</td>
+                        <td>@item.Comment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
