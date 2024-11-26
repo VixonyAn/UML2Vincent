@@ -25,6 +25,7 @@ namespace PizzaLibrary.Models
         #endregion
 
         #region Constructor
+        public Order() { }
         public Order(Customer customer)
         {
             _counter++;

@@ -4,11 +4,13 @@
     ViewData["Title"] = "Create Order";
 }
 
-<h1>Select Customer</h1>
+<h3>Select Customer</h3>
 <form method="post" asp-page-handler="Customer"><p>
     Mobile : <input type="text>" asp-for="SearchCustomerMobile" />
     <input type="submit" value="Search customer" />
 </p></form>
+
+<h3><span class="text-danger">@Model.MessageCustomer</span></h3>
 
 @{
     if (@Model.TheCustomer != null)
@@ -24,7 +26,7 @@
     }
 }
 
-<h1>Add MenuItem to Order</h1>
+<h3>Add to Order</h3>
 <form method="post" asp-page-handler="AddToOrder">
     <label>MenuItems</label>
     <select id="ChosenMenuItem" name="ChosenMenuItem"
@@ -37,6 +39,7 @@
     <input type="submit" value="AddToOrder" />
 </form>
 
+<h3>Shopping Basket</h3>
 @{
     if (Model.OrderLines != null && Model.OrderLines.Count > 0)
     {
@@ -45,8 +48,9 @@
                 <tr>
                     <th>Product</th>
                     <th>Amount</th>
-                    <th>Price</th>
+                    <th>Subtotal</th>
                     <th>Comment</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -57,9 +61,28 @@
                         <td>@item.Amount</td>
                         <td>@item.SubTotal()</td>
                         <td>@item.Comment</td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete">
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
 }
+
+<form method="radio">
+    <input type="radio" asp-for="Delivery" value="True"/> Delivery
+    <br />
+    <input type="radio" asp-for="Delivery" value="False"/> Eat here
+</form>
+
+<h3><span class="text-danger">@Model.MessageOrder</span></h3>
+
+<form method="post" asp-page-handler="CreateOrder">
+    <p>
+        <input type="submit" value="Create Order" />
+    </p>
+</form>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PizzaLibrary.Interfaces;
 using PizzaLibrary.Models;
+using PizzaLibrary.Services;
 
 namespace UMLRazor.Pages.Orders
 {
@@ -13,6 +14,10 @@ namespace UMLRazor.Pages.Orders
         private IShoppingBasket _shoppingBasket;
 
         #region Properties
+        public string MessageCustomer { get; set; }
+        public string MessageOrder { get; set; }
+        [BindProperty]
+        public bool Delivery { get; set; }
         [BindProperty]
         public string SearchCustomerMobile { get; set; }
         public Customer TheCustomer { get; set; }
@@ -24,8 +29,11 @@ namespace UMLRazor.Pages.Orders
         [BindProperty]
         public string Comment { get; set; }
         public List<OrderLine> OrderLines { get; set; }
+        [BindProperty]
+        public int SearchOrderLineById { get; set; }
         #endregion
 
+        #region Methods
         public CreateOrderModel(ICustomerRepository customerRepository,
                                 IMenuItemRepository menuItemRepository,
                                 IShoppingBasket shoppingBasket)
@@ -33,6 +41,8 @@ namespace UMLRazor.Pages.Orders
             _cRepo = customerRepository;
             _mRepo = menuItemRepository;
             _shoppingBasket = shoppingBasket;
+            OrderLines = _shoppingBasket.GetAll();
+            TheCustomer = _shoppingBasket.Customer;
             createMenuSelectList();
         }
 
@@ -56,7 +66,7 @@ namespace UMLRazor.Pages.Orders
             _shoppingBasket.Customer = TheCustomer;
             if (TheCustomer == null)
             {
-                //Error Message
+                MessageCustomer = "404: Customer not found";
             }
         }
         public void OnPostAddToOrder()
@@ -69,9 +79,24 @@ namespace UMLRazor.Pages.Orders
                     OrderLine ol = new OrderLine(Amount, menuItemToOrder, Comment);
                     _shoppingBasket.AddOrderLine(ol);
                 }
-                OrderLines = _shoppingBasket.GetAll();
-                TheCustomer = _shoppingBasket.Customer;
             }
         }
+        public IActionResult OnPostDelete()
+        {
+            _shoppingBasket.DeleteOrderLine(SearchOrderLineById);
+            return Page();
+        }
+
+        public IActionResult OnPostCreateOrder()
+        {
+            if (_shoppingBasket.Customer == null || _shoppingBasket.Count == 0)
+            {
+                MessageOrder = "Error: Customer is not selected or there is no item in your cart";
+                return Page();
+            }
+            return RedirectToPage("ShowOrder");
+            //should save and print customer info, orderlines, total price (reciept) over to ShowOrder
+        }
+        #endregion
     }
 }

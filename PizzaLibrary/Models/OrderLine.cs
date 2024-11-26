@@ -44,6 +44,7 @@ namespace PizzaLibrary.Models
         {
             
         }
+
         public double SubTotal()
         {
             return MenuItem.Price * Amount;

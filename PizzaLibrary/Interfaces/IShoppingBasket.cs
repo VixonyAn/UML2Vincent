@@ -10,7 +10,10 @@ namespace PizzaLibrary.Interfaces
     public interface IShoppingBasket
     {
         List<OrderLine> GetAll();
+        int Count { get; }
         Customer Customer { get; set; }
         void AddOrderLine(OrderLine orderLine);
+        OrderLine SearchOrderLineById(int id);
+        void DeleteOrderLine(int id);
     }
 }
