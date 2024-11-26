@@ -29,11 +29,9 @@ namespace UMLRazor.Pages.Orders
         [BindProperty]
         public string Comment { get; set; }
         public List<OrderLine> OrderLines { get; set; }
-        [BindProperty]
-        public int SearchOrderLineById { get; set; }
         #endregion
 
-        #region Methods
+        #region Constructor
         public CreateOrderModel(ICustomerRepository customerRepository,
                                 IMenuItemRepository menuItemRepository,
                                 IShoppingBasket shoppingBasket)
@@ -45,7 +43,9 @@ namespace UMLRazor.Pages.Orders
             TheCustomer = _shoppingBasket.Customer;
             createMenuSelectList();
         }
+        #endregion
 
+        #region Methods
         private void createMenuSelectList() // small first letter for private methods
         {
             MenuItemSelectList = new List<SelectListItem>();
@@ -60,6 +60,7 @@ namespace UMLRazor.Pages.Orders
         public void OnGet()
         {
         }
+
         public void OnPostCustomer()
         {
             TheCustomer = _cRepo.GetCustomerByMobile(SearchCustomerMobile);
@@ -69,6 +70,7 @@ namespace UMLRazor.Pages.Orders
                 MessageCustomer = "404: Customer not found";
             }
         }
+
         public void OnPostAddToOrder()
         {
             if (Amount > 0)
@@ -81,9 +83,10 @@ namespace UMLRazor.Pages.Orders
                 }
             }
         }
-        public IActionResult OnPostDelete()
+
+        public IActionResult OnPostDelete(int deleteId)
         {
-            _shoppingBasket.DeleteOrderLine(SearchOrderLineById);
+            _shoppingBasket.DeleteOrderLine(deleteId);
             return Page();
         }
 

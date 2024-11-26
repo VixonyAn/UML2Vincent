@@ -62,7 +62,7 @@
                         <td>@item.SubTotal()</td>
                         <td>@item.Comment</td>
                         <td>
-                            <form method="post" asp-page-handler="Delete">
+                            <form method="post" asp-page-handler="Delete" asp-route-deleteId="@item.Id">
                                 <input type="submit" value="Delete" />
                             </form>
                         </td>

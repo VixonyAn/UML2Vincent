@@ -19,16 +19,17 @@ namespace PizzaLibrary.Services
             _orderLines = new List<OrderLine>();
         }
 
-        public void AddOrderLine(OrderLine orderLine)
+        public void AddOrderLine(OrderLine line)
         {
-            _orderLines.Add(orderLine);
+            line.Id = _orderLines.Count;
+            _orderLines.Add(line);
         }
 
         public OrderLine SearchOrderLineById(int id)
         {
             foreach (OrderLine orderLine in _orderLines)
             {
-                if (id ==orderLine.Id)
+                if (id == orderLine.Id)
                 {
                     return orderLine;
                 }
@@ -38,8 +39,11 @@ namespace PizzaLibrary.Services
 
         public void DeleteOrderLine(int id)
         {
-            OrderLine foundItem = SearchOrderLineById(id);
-            _orderLines.Remove(foundItem);
+            _orderLines.RemoveAt(id);
+            for (int i = id; i < _orderLines.Count; i++)
+            {
+                _orderLines[i].Id = i;
+            }
         }
 
         public List<OrderLine> GetAll()
