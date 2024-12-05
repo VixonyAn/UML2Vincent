@@ -46,8 +46,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Product</th>
                     <th>Amount</th>
+                    <th>Product</th>
                     <th>Subtotal</th>
                     <th>Comment</th>
                     <th></th>
@@ -57,8 +57,8 @@
                 @foreach (var item in Model.OrderLines)
                 {
                     <tr>
-                        <td>@item.MenuItem.Name</td>
                         <td>@item.Amount</td>
+                        <td>@item.MenuItem.Name</td>
                         <td>@item.SubTotal()</td>
                         <td>@item.Comment</td>
                         <td>

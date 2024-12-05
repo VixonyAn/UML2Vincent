@@ -3,3 +3,29 @@
 @{
     ViewData["Title"] = "Show Order";
 }
+
+<h3>Order Reciept</h3>
+@* Show CompanyInfo singleton info here (remember to implement singleton in Program) *@
+
+<h3>Ordered Items</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Product</th>
+            <th>Subtotal</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderLines)
+        {
+            <tr>
+                <td>@item.Amount</td>
+                <td>@item.MenuItem.Name</td>
+                <td>@item.SubTotal()</td>
+                <td>@item.Comment</td>
+            </tr>
+        }
+    </tbody>
+</table>
